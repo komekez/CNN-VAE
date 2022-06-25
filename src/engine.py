@@ -50,7 +50,7 @@ bceLoss : Reconstruction Loss
 mu : Mean
 logVar : Log Variance
 """
-def validate(model, dataloader, criterion):
+def validate(model, dataloader, dataset, criterion):
     model.eval()
     runningLoss = 0.0
 

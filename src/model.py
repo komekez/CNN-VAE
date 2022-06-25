@@ -1,5 +1,12 @@
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
+
+
+kernel_size = 4 # (4, 4) kernel
+init_channels = 8 # initial number of filters
+image_channels = 1 # MNIST images are grayscale
+latent_dim = 16 # latent dimension for sampling
 
 
 class convVAE(nn.Module):
