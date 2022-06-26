@@ -1,2 +1,6 @@
+#Removal of unwanted file
 .idea/
 src/__pycache__/
+
+#Results Folder
+outputs/
