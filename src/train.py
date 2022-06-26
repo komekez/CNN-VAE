@@ -50,7 +50,7 @@ val_loss = []
 
 for epoch in range(epochs):
     print(f"Epoch {epoch+1} of {epochs}")
-    train_epoch_loss = train(model, trainloader, trainset, criterion)
+    train_epoch_loss = train(model, trainloader, trainset, optimizer, criterion)
     train_loss.append(train_epoch_loss)
 
     val_epoch_loss, recon_image = validate(model, testloader, testset, criterion)
@@ -66,8 +66,5 @@ for epoch in range(epochs):
     # save the reconstructions as a .gif file
     imageToVid(grid_images)
     # save the loss plots to disk
-    saveLossPlot(train_loss, val_loss)
-    print('TRAINING COMPLETE')
-
-
-
+saveLossPlot(train_loss, val_loss)
+print('TRAINING COMPLETE')

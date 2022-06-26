@@ -2,6 +2,8 @@ from tqdm import tqdm
 import torch
 
 
+batch_size=64
+
 """
 bceLoss : Reconstruction Loss
 mu : Mean
@@ -27,7 +29,7 @@ def train(model, dataloader, dataset, optimizer, criterion):
     runningLoss = 0.0
     counter = 0
 
-    for i,data in tqdm(enumerate(dataloader), total=int(len(dataset)/dataloader.batchSize)):
+    for i,data in tqdm(enumerate(dataloader), total=int(len(dataset)/batch_size)):
         counter += 1
         data = data[0]
         optimizer.zero_grad()
@@ -57,7 +59,7 @@ def validate(model, dataloader, dataset, criterion):
     counter = 0
 
     with torch.no_grad():
-        for i, data in tqdm(enumerate(dataloader), total=int(len(dataset)/dataloader.batchSize)):
+        for i, data in tqdm(enumerate(dataloader), total=int(len(dataset)/batch_size)):
             counter += 1
             data = data[0]
 
@@ -67,7 +69,7 @@ def validate(model, dataloader, dataset, criterion):
             loss = lossFunction(bceLoss, mu, logVar)
             runningLoss += loss.item()
 
-            if(i == int(len(dataset)/dataloader.batchSize)-1):
+            if(i == int(len(dataset)/batch_size)-1):
                 reconImage = reconstruction
     valLoss = runningLoss/counter
     return valLoss, reconImage
